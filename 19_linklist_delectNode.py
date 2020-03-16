@@ -32,3 +32,6 @@ def removeNthFromEnd(head: ListNode, n: int) -> ListNode:
     behind.next = behind.next.next
 
     return dummy.next
+
+if __name__ == "__main__":
+    print("hello")
