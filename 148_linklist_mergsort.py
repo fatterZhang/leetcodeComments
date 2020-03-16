@@ -7,18 +7,16 @@ from MyUtils import *
 def getMid(head: ListNode):
     """
     获取链表中心节点，
-    如果链表节点数为偶数，则返回中心左侧节点（slow指向的链表节点），此时fast指向倒数第二个节点
+    如果链表节点数为偶数，则返回右侧中心节点（slow指向的链表节点），此时fast为空
     如果链表节点是奇数，则返回中心节点（slow指向的链表节点），此时fast指向倒数第一个节点
     :param head: 链表头节点
     :return:
     """
-    if not head:
-        return head
     slow, fast = head, head
-    while fast.next and fast.next.next:
+    while fast and fast.next:
         fast = fast.next.next
         slow = slow.next
-    return slow
+    return slow, fast
 
 
 def cutLink(head: ListNode, n: int) -> ListNode:
@@ -147,4 +145,15 @@ if __name__ == "__main__":
     # test_getMid([1])
     # test_getMid([1, 2, 3, 4])
     # test_getMid([1, 2, 3, 4, 5])
-    test_cutLink()
+    # test_cutLink()
+    link = construct_linklist([1,2,3,4, 5])
+    mid, fast = getMid(link)
+    if mid:
+        print(mid.val)
+    else:
+        print("mid is None")
+        
+    if fast:
+        print(fast.val)
+    else:
+        print("fast is None")
