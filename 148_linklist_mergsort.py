@@ -157,3 +157,19 @@ if __name__ == "__main__":
         print(fast.val)
     else:
         print("fast is None")
+
+
+def reverseVowels(self, s: str) -> str:
+    vowel = "aeiouAEIOU"
+    i, j = 0, len(s) - 1
+    s = list(s)
+    while i < j:
+        while i < j and s[i] not in vowel:
+            i += 1
+        while j > i and s[j] not in vowel:
+            j -= 1
+        if i < j:
+            s[i], s[j] = s[j], s[i]
+            i += 1
+            j -= 1
+    return "".join(s)

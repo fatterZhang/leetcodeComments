@@ -33,5 +33,52 @@ def removeNthFromEnd(head: ListNode, n: int) -> ListNode:
 
     return dummy.next
 
+
+def deleteDuplicates(head: ListNode) -> ListNode:
+    """
+    删除有序链表中的重复元素
+    dummy头节点
+    双指针
+    """
+    dummy = ListNode(float('-inf'))
+    cursor, tail = head, dummy
+
+    while cursor:
+        if cursor.val != tail.val:
+            tail.next = cursor
+            tail = cursor
+            cursor = cursor.next
+            tail.next = None
+        else:
+            cursor = cursor.next
+    return dummy.next
+
+
+def deleteDuplicates1(head: ListNode) -> ListNode:
+    """
+    删除无序链表中的重复元素
+    查找表
+    dummy头节点
+    双指针
+    """
+    dummy = ListNode(float('-inf'))
+    cursor, tail = head, dummy
+    found = set()
+
+    while cursor:
+        if cursor.val not in found:
+            found.add(cursor.val)
+
+            tail.next = cursor
+            tail = cursor
+            cursor = cursor.next
+            tail.next = None
+        else:
+            cursor = cursor.next
+    return dummy.next
+
+
 if __name__ == "__main__":
-    print("hello")
+    lst = [7, 9, 1, 1, 1, 2, 3, 4, 4, 5]
+    link = construct_linklist(lst)
+    print_linklist(deleteDuplicates1(link))
